@@ -1,39 +1,109 @@
 # PROCV no Excel
 
-O [PROCV no Excel](https://microsoft.com) (ou VLOOKUP) é uma função usada para fazer uma **busca vertical** (de cima para baixo) na primeira coluna de uma tabela e retornar um dado correspondente na mesma linha.
+O **PROCV** procura um valor na primeira coluna de uma tabela e devolve uma
+informação da mesma linha. Ele é útil, por exemplo, para encontrar o nome de um
+produto a partir do seu código.
 
-## Sintaxe da função
+PROCV significa **procura vertical**: a busca é feita de cima para baixo. O
+nome em inglês é **VLOOKUP**.
+
+## Um exemplo do dia a dia
+
+Imagine uma lista de produtos:
+
+| Código | Produto | Preço |
+|---|---|---:|
+| 101 | Caderno | R$ 25,00 |
+| 102 | Caneta | R$ 5,00 |
+| 103 | Mochila | R$ 120,00 |
+
+Para descobrir o nome do produto com código `102`, use:
 
 ```excel
-=PROCV(valor_procurado; matriz_tabela; núm_índice_coluna; [procurar_intervalo])
+=PROCV(102; A2:C4; 2; FALSO)
 ```
 
-- **valor_procurado:** O dado que você quer encontrar (ex: um código de produto, CPF ou nome).
-- **matriz_tabela:** O intervalo de células onde os dados estão (a coluna do valor procurado deve ser obrigatoriamente a **primeira coluna** dessa seleção).
-- **núm_índice_coluna:** O número da coluna (contando a partir da primeira da seleção) de onde você quer que a resposta seja trazida.
-- **procurar_intervalo:** Define se a busca é exata ou aproximada:
-  - **0 ou FALSO:** Busca uma **correspondência exata** (o mais recomendado).
-  - **1 ou VERDADEIRO:** Busca uma **correspondência aproximada** (a tabela precisa estar em ordem crescente).
+O Excel procura `102` na primeira coluna do intervalo `A2:C4` e retorna o valor
+da **2ª coluna** desse intervalo: `Caneta`.
 
-## Exemplo prático
-
-Imagine que a **Coluna A** é o _Código_ e a **Coluna B** é o _Produto_. Para descobrir qual produto tem o código `102` na célula `A2`, use:
+## Entendendo cada parte
 
 ```excel
-=PROCV(102; A1:B10; 2; FALSO)
+=PROCV(valor_procurado; intervalo_da_tabela; número_da_coluna; tipo_de_busca)
 ```
 
-O Excel procura `102` na coluna A e retorna o texto da 2ª coluna (Coluna B) da mesma linha.
+- **valor_procurado:** o que você quer localizar, como um código ou nome.
+- **intervalo_da_tabela:** as células que contêm os dados. A coluna onde o Excel
+  vai procurar precisa ser a primeira do intervalo selecionado.
+- **número_da_coluna:** qual coluna do intervalo contém a resposta. A contagem
+  começa em `1`, na primeira coluna selecionada — não necessariamente na coluna
+  A da planilha.
+- **tipo_de_busca:** define se a busca exige um valor igual ou aceita uma
+  aproximação.
 
-## Principais regras e cuidados
+## Prefira a busca exata
 
-- **Sentido único:** O PROCV só busca valores **da esquerda para a direita**. Se a informação desejada estiver à esquerda da coluna de referência, use **PROCX** ou a combinação **ÍNDICE + CORRESP**.
-- **Erro `#N/D`:** Aparece quando o valor procurado não é encontrado na primeira coluna ou quando há digitação incorreta.
-- **Travar a tabela:** Ao arrastar a fórmula para outras células, use o símbolo de cifrão (ex: `$A$1:$B$10` ou apertando `F4`) para fixar o intervalo da tabela.
+Na maioria dos casos, você quer encontrar exatamente o código ou o nome
+informado. Para isso, use `FALSO` (ou `0`) no último argumento:
 
-## Fontes e materiais de apoio
+```excel
+=PROCV(102; A2:C4; 2; FALSO)
+```
 
-- [Suporte da Microsoft - Função PROCV](https://microsoft.com)
-- [Guia da Carreira sobre PROCV](https://guiadacarreira.com.br)
-- [Adriano Pataro - Função PROCV](https://adrianopataro.com.br)
-- [PROCV no Excel - Hashtag Treinamentos](https://youtube.com)
+`VERDADEIRO` (ou `1`) permite uma busca aproximada. Ela só é apropriada em
+situações específicas — por exemplo, para encontrar uma faixa de valores em uma
+tabela organizada em ordem crescente. Se tiver dúvida, use `FALSO`.
+
+## Regras importantes
+
+### A coluna de busca deve estar à esquerda
+
+O PROCV sempre procura na **primeira coluna** do intervalo e só retorna dados
+que estejam à direita dela. Se o código estiver na coluna B e o nome na coluna
+A, o PROCV não consegue buscar pelo código e retornar o nome. Nas versões mais
+recentes do Excel, a função **PROCX** permite escolher separadamente onde buscar
+e de onde retornar o resultado.
+
+### Fixe o intervalo ao copiar a fórmula
+
+Se você copiar a fórmula para outras linhas, talvez queira manter a mesma lista
+de produtos. Use cifrões para fixar o intervalo:
+
+```excel
+=PROCV(E2; $A$2:$C$4; 2; FALSO)
+```
+
+No Excel, selecione o intervalo na fórmula e pressione `F4` para alternar as
+opções de fixação. Sem os cifrões, o intervalo pode se deslocar ao copiar a
+fórmula.
+
+## Quando algo dá errado
+
+- **`#N/D`:** não foi encontrado um valor igual ao procurado. Confira espaços
+  extras, diferenças entre texto e número e se o valor está na primeira coluna
+  do intervalo.
+- **Resultado inesperado:** confirme o número da coluna. A contagem começa na
+  primeira coluna do intervalo, que vale `1`.
+- **`#REF!`:** o número da coluna informado é maior que a quantidade de colunas
+  do intervalo.
+
+Uma planilha pode exibir uma mensagem mais amigável para um valor não
+encontrado com `SEERRO`, por exemplo:
+
+```excel
+=SEERRO(PROCV(E2; $A$2:$C$4; 2; FALSO); "Código não encontrado")
+```
+
+Use isso quando fizer sentido para quem consulta a planilha. `SEERRO` também
+oculta outros erros da fórmula; portanto, não substitui a conferência da
+referência e dos argumentos.
+
+## Em resumo
+
+1. Selecione um intervalo que comece pela coluna onde está o valor procurado.
+2. Conte a coluna de retorno dentro desse intervalo, começando em `1`.
+3. Use `FALSO` para exigir uma correspondência exata.
+4. Fixe o intervalo com `$` se for copiar a fórmula.
+
+Para detalhes sobre a função, consulte a
+[ajuda oficial da Microsoft sobre PROCV](https://support.microsoft.com/pt-br/search/results?query=fun%C3%A7%C3%A3o%20PROCV).

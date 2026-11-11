@@ -1,5 +1,64 @@
 site_name: Minha Wiki
+site_description: Anotações e guias pessoais
+site_url: https://vicenterfreire.github.io/VicenteWikiDump/
 docs_dir: docs
 site_dir: site
+
+nav:
+  - Início: index.md
+  - Excel:
+      - PROCV: procv.md
+  - Banco de dados:
+      - Guia de normalização: guia_de_normaliza_o_de_banco_de_dados.md
+
+plugins:
+  - search
+
 theme:
-  name: mkdocs
+  name: material
+  language: pt
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: teal
+      toggle:
+        icon: material/brightness-7
+        name: Ativar modo escuro
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      accent: teal
+      toggle:
+        icon: material/brightness-4
+        name: Ativar modo claro
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.expand
+    - navigation.sections
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.details
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.highlight
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.tabbed
+
+extra_javascript:
+  - https://unpkg.com/mermaid@11.4.1/dist/mermaid.min.js
+  - javascripts/mermaid-init.js
