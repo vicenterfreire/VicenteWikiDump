@@ -1,0 +1,129 @@
+.procv-demo {
+  margin: 1.5rem 0;
+  padding: 1rem;
+  border: 1px solid var(--md-default-fg-color--lightest);
+  border-radius: 0.6rem;
+  background: var(--md-default-bg-color);
+}
+
+.procv-demo h3 {
+  margin-top: 0;
+}
+
+.procv-demo__status {
+  min-height: 3em;
+  padding: 0.75rem 1rem;
+  border-left: 0.2rem solid var(--md-primary-fg-color);
+  background: var(--md-code-bg-color);
+}
+
+.procv-demo__table-wrap {
+  overflow-x: auto;
+}
+
+.procv-demo__table {
+  width: 100%;
+  margin: 0;
+}
+
+.procv-demo__table th,
+.procv-demo__table td {
+  transition:
+    background-color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.procv-demo__table [data-cell].is-matrix {
+  background-color: color-mix(
+    in srgb,
+    var(--md-primary-fg-color) 10%,
+    var(--md-default-bg-color)
+  );
+}
+
+.procv-demo__table [data-cell].is-search-column,
+.procv-demo__table [data-cell].is-return-column {
+  box-shadow: inset 0 0 0 2px var(--md-primary-fg-color);
+}
+
+.procv-demo__table [data-cell].is-match,
+.procv-demo__table [data-cell].is-found-row {
+  background-color: color-mix(
+    in srgb,
+    var(--md-accent-fg-color) 22%,
+    var(--md-default-bg-color)
+  );
+}
+
+.procv-demo__table [data-cell].is-result {
+  background-color: var(--md-accent-fg-color);
+  color: var(--md-accent-bg-color);
+  font-weight: 700;
+  box-shadow: inset 0 0 0 3px var(--md-accent-fg-color);
+}
+
+.procv-demo__legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+  margin-top: 0.75rem;
+  font-size: 0.8rem;
+}
+
+.procv-demo__legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.procv-demo__swatch {
+  width: 0.9rem;
+  height: 0.9rem;
+  border: 1px solid var(--md-default-fg-color--light);
+  border-radius: 0.2rem;
+}
+
+.procv-demo__swatch--matrix {
+  background: color-mix(
+    in srgb,
+    var(--md-primary-fg-color) 10%,
+    var(--md-default-bg-color)
+  );
+}
+
+.procv-demo__swatch--match {
+  background: color-mix(
+    in srgb,
+    var(--md-accent-fg-color) 22%,
+    var(--md-default-bg-color)
+  );
+}
+
+.procv-demo__swatch--result {
+  background: var(--md-accent-fg-color);
+}
+
+.procv-demo__controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.procv-demo__controls[hidden] {
+  display: none;
+}
+
+.procv-demo__controls [data-demo-step] {
+  color: var(--md-default-fg-color--light);
+  font-size: 0.85rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .procv-demo__table th,
+  .procv-demo__table td {
+    transition: none;
+  }
+}

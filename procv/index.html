@@ -1,0 +1,972 @@
+
+<!doctype html>
+<html lang="pt" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Anotações e guias pessoais">
+      
+      
+      
+        <link rel="canonical" href="https://vicenterfreire.github.io/VicenteWikiDump/procv/">
+      
+      
+        <link rel="prev" href="..">
+      
+      
+        <link rel="next" href="../guia_de_normaliza_o_de_banco_de_dados/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.1">
+    
+    
+      
+        <title>PROCV - Minha Wiki</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.57a0d79d.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.fb2fffe2.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/procv-demo.css">
+    
+      <link rel="stylesheet" href="../stylesheets/normalization-demo.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="teal">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#procv-no-excel" class="md-skip">
+          Ir para o conteúdo
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabeçalho">
+    <a href=".." title="Minha Wiki" class="md-header__button md-logo" aria-label="Minha Wiki" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Minha Wiki
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              PROCV
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="teal"  aria-label="Ativar modo escuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Ativar modo escuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="teal"  aria-label="Ativar modo claro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Ativar modo claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Buscar" placeholder="Buscar" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Pesquisar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpar" aria-label="Limpar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando a pesquisa
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navegação" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Minha Wiki" class="md-nav__button md-logo" aria-label="Minha Wiki" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Minha Wiki
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Início
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Excel
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Excel
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PROCV
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PROCV
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#um-exemplo-do-dia-a-dia" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Um exemplo do dia a dia
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#veja-o-procv-passo-a-passo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Veja o PROCV passo a passo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entendendo-cada-parte" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Entendendo cada parte
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prefira-a-busca-exata" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prefira a busca exata
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#regras-importantes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Regras importantes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Regras importantes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-coluna-de-busca-deve-estar-a-esquerda" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A coluna de busca deve estar à esquerda
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixe-o-intervalo-ao-copiar-a-formula" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fixe o intervalo ao copiar a fórmula
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quando-algo-da-errado" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quando algo dá errado
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#em-resumo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Em resumo
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Banco de dados
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Banco de dados
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guia_de_normaliza_o_de_banco_de_dados/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guia de normalização
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#um-exemplo-do-dia-a-dia" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Um exemplo do dia a dia
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#veja-o-procv-passo-a-passo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Veja o PROCV passo a passo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entendendo-cada-parte" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Entendendo cada parte
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prefira-a-busca-exata" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prefira a busca exata
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#regras-importantes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Regras importantes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Regras importantes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-coluna-de-busca-deve-estar-a-esquerda" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A coluna de busca deve estar à esquerda
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixe-o-intervalo-ao-copiar-a-formula" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fixe o intervalo ao copiar a fórmula
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quando-algo-da-errado" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quando algo dá errado
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#em-resumo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Em resumo
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="procv-no-excel">PROCV no Excel<a class="headerlink" href="#procv-no-excel" title="Permanent link">&para;</a></h1>
+<p>O <strong>PROCV</strong> procura um valor na primeira coluna de uma tabela e devolve uma
+informação da mesma linha. Ele é útil, por exemplo, para encontrar o nome de um
+produto a partir do seu código.</p>
+<p>PROCV significa <strong>procura vertical</strong>: a busca é feita de cima para baixo. O
+nome em inglês é <strong>VLOOKUP</strong>.</p>
+<h2 id="um-exemplo-do-dia-a-dia">Um exemplo do dia a dia<a class="headerlink" href="#um-exemplo-do-dia-a-dia" title="Permanent link">&para;</a></h2>
+<p>Imagine uma lista de produtos:</p>
+<table>
+<thead>
+<tr>
+<th>Código</th>
+<th>Produto</th>
+<th style="text-align: right;">Preço</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>101</td>
+<td>Caderno</td>
+<td style="text-align: right;">R$ 25,00</td>
+</tr>
+<tr>
+<td>102</td>
+<td>Caneta</td>
+<td style="text-align: right;">R$ 5,00</td>
+</tr>
+<tr>
+<td>103</td>
+<td>Mochila</td>
+<td style="text-align: right;">R$ 120,00</td>
+</tr>
+</tbody>
+</table>
+<p>Para descobrir o nome do produto com código <code>102</code>, use:</p>
+<div class="highlight"><pre><span></span><code>=PROCV(102; A2:C4; 2; FALSO)
+</code></pre></div>
+<p>O Excel procura <code>102</code> na primeira coluna do intervalo <code>A2:C4</code> e retorna o valor
+da <strong>2ª coluna</strong> desse intervalo: <code>Caneta</code>.</p>
+<h2 id="veja-o-procv-passo-a-passo">Veja o PROCV passo a passo<a class="headerlink" href="#veja-o-procv-passo-a-passo" title="Permanent link">&para;</a></h2>
+<p>A demonstração abaixo mostra o que cada parte da fórmula faz. Use os botões para
+avançar ou voltar pelas etapas.</p>
+<section class="procv-demo" data-procv-demo aria-labelledby="procv-demo-title">
+  <h3 id="procv-demo-title">Como a busca encontra “Caneta”</h3>
+  <p>Fórmula: <code>=PROCV(102; A2:C4; 2; FALSO)</code></p>
+  <p class="procv-demo__status" data-demo-status aria-live="polite" aria-atomic="true">
+    A tabela está completa. Avance para ver como a fórmula encontra o resultado.
+  </p>
+  <div class="procv-demo__table-wrap">
+    <table class="procv-demo__table">
+      <caption>Lista de produtos. As letras indicam as colunas da planilha e os números, as linhas.</caption>
+      <thead>
+        <tr>
+          <th scope="col">Linha</th>
+          <th scope="col">A (código)</th>
+          <th scope="col">B (produto)</th>
+          <th scope="col">C (preço)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr data-row="2">
+          <th scope="row">2</th>
+          <td data-cell="A2">101</td>
+          <td data-cell="B2">Caderno</td>
+          <td data-cell="C2">R$ 25,00</td>
+        </tr>
+        <tr data-row="3">
+          <th scope="row">3</th>
+          <td data-cell="A3">102</td>
+          <td data-cell="B3">Caneta</td>
+          <td data-cell="C3">R$ 5,00</td>
+        </tr>
+        <tr data-row="4">
+          <th scope="row">4</th>
+          <td data-cell="A4">103</td>
+          <td data-cell="B4">Mochila</td>
+          <td data-cell="C4">R$ 120,00</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="procv-demo__legend" aria-label="Legenda">
+    <span><i class="procv-demo__swatch procv-demo__swatch--matrix" aria-hidden="true"></i>Intervalo selecionado</span>
+    <span><i class="procv-demo__swatch procv-demo__swatch--match" aria-hidden="true"></i>Correspondência encontrada</span>
+    <span><i class="procv-demo__swatch procv-demo__swatch--result" aria-hidden="true"></i>Resultado</span>
+  </div>
+  <div class="procv-demo__controls" data-demo-controls hidden>
+    <button class="md-button" type="button" data-demo-previous disabled>Voltar</button>
+    <span data-demo-step aria-live="polite">Pronto para começar</span>
+    <button class="md-button md-button--primary" type="button" data-demo-next>Começar</button>
+  </div>
+</section>
+
+<p>Sem a animação, o resumo é: o intervalo <code>A2:C4</code> define a matriz; o PROCV procura
+<code>102</code> na primeira coluna dessa matriz e encontra a linha 3. Depois, conta duas
+colunas a partir do início da matriz e retorna a célula <code>B3</code>, cujo valor é
+<strong>Caneta</strong>.</p>
+<h2 id="entendendo-cada-parte">Entendendo cada parte<a class="headerlink" href="#entendendo-cada-parte" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>=PROCV(valor_procurado; intervalo_da_tabela; número_da_coluna; tipo_de_busca)
+</code></pre></div>
+<ul>
+<li><strong>valor_procurado:</strong> o que você quer localizar, como um código ou nome.</li>
+<li><strong>intervalo_da_tabela:</strong> as células que contêm os dados. A coluna onde o Excel
+  vai procurar precisa ser a primeira do intervalo selecionado.</li>
+<li><strong>número_da_coluna:</strong> qual coluna do intervalo contém a resposta. A contagem
+  começa em <code>1</code>, na primeira coluna selecionada — não necessariamente na coluna
+  A da planilha.</li>
+<li><strong>tipo_de_busca:</strong> define se a busca exige um valor igual ou aceita uma
+  aproximação.</li>
+</ul>
+<h2 id="prefira-a-busca-exata">Prefira a busca exata<a class="headerlink" href="#prefira-a-busca-exata" title="Permanent link">&para;</a></h2>
+<p>Na maioria dos casos, você quer encontrar exatamente o código ou o nome
+informado. Para isso, use <code>FALSO</code> (ou <code>0</code>) no último argumento:</p>
+<div class="highlight"><pre><span></span><code>=PROCV(102; A2:C4; 2; FALSO)
+</code></pre></div>
+<p><code>VERDADEIRO</code> (ou <code>1</code>) permite uma busca aproximada. Ela só é apropriada em
+situações específicas — por exemplo, para encontrar uma faixa de valores em uma
+tabela organizada em ordem crescente. Se tiver dúvida, use <code>FALSO</code>.</p>
+<h2 id="regras-importantes">Regras importantes<a class="headerlink" href="#regras-importantes" title="Permanent link">&para;</a></h2>
+<h3 id="a-coluna-de-busca-deve-estar-a-esquerda">A coluna de busca deve estar à esquerda<a class="headerlink" href="#a-coluna-de-busca-deve-estar-a-esquerda" title="Permanent link">&para;</a></h3>
+<p>O PROCV sempre procura na <strong>primeira coluna</strong> do intervalo e só retorna dados
+que estejam à direita dela. Se o código estiver na coluna B e o nome na coluna
+A, o PROCV não consegue buscar pelo código e retornar o nome. Nas versões mais
+recentes do Excel, a função <strong>PROCX</strong> permite escolher separadamente onde buscar
+e de onde retornar o resultado.</p>
+<h3 id="fixe-o-intervalo-ao-copiar-a-formula">Fixe o intervalo ao copiar a fórmula<a class="headerlink" href="#fixe-o-intervalo-ao-copiar-a-formula" title="Permanent link">&para;</a></h3>
+<p>Se você copiar a fórmula para outras linhas, talvez queira manter a mesma lista
+de produtos. Use cifrões para fixar o intervalo:</p>
+<div class="highlight"><pre><span></span><code>=PROCV(E2; $A$2:$C$4; 2; FALSO)
+</code></pre></div>
+<p>No Excel, selecione o intervalo na fórmula e pressione <code>F4</code> para alternar as
+opções de fixação. Sem os cifrões, o intervalo pode se deslocar ao copiar a
+fórmula.</p>
+<h2 id="quando-algo-da-errado">Quando algo dá errado<a class="headerlink" href="#quando-algo-da-errado" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong><code>#N/D</code>:</strong> não foi encontrado um valor igual ao procurado. Confira espaços
+  extras, diferenças entre texto e número e se o valor está na primeira coluna
+  do intervalo.</li>
+<li><strong>Resultado inesperado:</strong> confirme o número da coluna. A contagem começa na
+  primeira coluna do intervalo, que vale <code>1</code>.</li>
+<li><strong><code>#REF!</code>:</strong> o número da coluna informado é maior que a quantidade de colunas
+  do intervalo.</li>
+</ul>
+<p>Uma planilha pode exibir uma mensagem mais amigável para um valor não
+encontrado com <code>SEERRO</code>, por exemplo:</p>
+<div class="highlight"><pre><span></span><code>=SEERRO(PROCV(E2; $A$2:$C$4; 2; FALSO); "Código não encontrado")
+</code></pre></div>
+<p>Use isso quando fizer sentido para quem consulta a planilha. <code>SEERRO</code> também
+oculta outros erros da fórmula; portanto, não substitui a conferência da
+referência e dos argumentos.</p>
+<h2 id="em-resumo">Em resumo<a class="headerlink" href="#em-resumo" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Selecione um intervalo que comece pela coluna onde está o valor procurado.</li>
+<li>Conte a coluna de retorno dentro desse intervalo, começando em <code>1</code>.</li>
+<li>Use <code>FALSO</code> para exigir uma correspondência exata.</li>
+<li>Fixe o intervalo com <code>$</code> se for copiar a fórmula.</li>
+</ol>
+<p>Para detalhes sobre a função, consulte a
+<a href="https://support.microsoft.com/pt-br/search/results?query=fun%C3%A7%C3%A3o%20PROCV">ajuda oficial da Microsoft sobre PROCV</a>.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Voltar ao topo
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.instant", "navigation.tracking", "navigation.expand", "navigation.sections", "navigation.top", "search.suggest", "search.highlight", "content.code.copy"], "search": "../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado para \u00e1rea de transfer\u00eancia", "clipboard.copy": "Copiar para \u00e1rea de transfer\u00eancia", "search.result.more.one": "Mais 1 nesta p\u00e1gina", "search.result.more.other": "Mais # nesta p\u00e1gina", "search.result.none": "Nenhum resultado encontrado", "search.result.one": "1 resultado encontrado", "search.result.other": "# resultados encontrados", "search.result.placeholder": "Digite para iniciar a busca", "search.result.term.missing": "Ausente", "select.version": "Selecione a vers\u00e3o"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.a5f9d56c.min.js"></script>
+      
+        <script src="https://unpkg.com/mermaid@11.4.1/dist/mermaid.min.js"></script>
+      
+        <script src="../javascripts/mermaid-init.js"></script>
+      
+        <script src="../javascripts/procv-demo.js"></script>
+      
+        <script src="../javascripts/normalization-demo.js"></script>
+      
+    
+  </body>
+</html>

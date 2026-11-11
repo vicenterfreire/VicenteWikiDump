@@ -1,0 +1,1606 @@
+
+<!doctype html>
+<html lang="pt" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Anotações e guias pessoais">
+      
+      
+      
+        <link rel="canonical" href="https://vicenterfreire.github.io/VicenteWikiDump/guia_de_normaliza_o_de_banco_de_dados/">
+      
+      
+        <link rel="prev" href="../procv/">
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.1">
+    
+    
+      
+        <title>Guia de normalização - Minha Wiki</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.57a0d79d.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.fb2fffe2.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/procv-demo.css">
+    
+      <link rel="stylesheet" href="../stylesheets/normalization-demo.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="teal">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#guia-de-normalizacao-de-banco-de-dados" class="md-skip">
+          Ir para o conteúdo
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabeçalho">
+    <a href=".." title="Minha Wiki" class="md-header__button md-logo" aria-label="Minha Wiki" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Minha Wiki
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Guia de normalização
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="teal"  aria-label="Ativar modo escuro"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Ativar modo escuro" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="teal"  aria-label="Ativar modo claro"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Ativar modo claro" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Buscar" placeholder="Buscar" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Pesquisar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpar" aria-label="Limpar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando a pesquisa
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navegação" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Minha Wiki" class="md-nav__button md-logo" aria-label="Minha Wiki" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Minha Wiki
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Início
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Excel
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Excel
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../procv/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PROCV
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Banco de dados
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Banco de dados
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guia de normalização
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guia de normalização
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#antes-de-comecar-alguns-conceitos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Antes de começar: alguns conceitos
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#problemas-causados-por-repeticao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problemas causados por repetição
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#veja-a-normalizacao-passo-a-passo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Veja a normalização passo a passo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#primeira-forma-normal-1fn" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Primeira Forma Normal (1FN)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Primeira Forma Normal (1FN)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#exemplo-varios-telefones-em-uma-celula" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exemplo: vários telefones em uma célula
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#segunda-forma-normal-2fn" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Segunda Forma Normal (2FN)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Segunda Forma Normal (2FN)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#exemplo-itens-de-pedido" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exemplo: itens de pedido
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#terceira-forma-normal-3fn" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Terceira Forma Normal (3FN)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Terceira Forma Normal (3FN)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#exemplo-departamento-do-funcionario" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exemplo: departamento do funcionário
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#forma-normal-de-boyce-codd-fnbc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Forma Normal de Boyce-Codd (FNBC)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quarta-forma-normal-4fn" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quarta Forma Normal (4FN)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Quarta Forma Normal (4FN)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#exemplo-habilidades-e-idiomas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exemplo: habilidades e idiomas
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quinta-forma-normal-5fn" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quinta Forma Normal (5FN)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resumo-das-formas-normais" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resumo das formas normais
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quando-desnormalizar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quando desnormalizar?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#por-onde-comecar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Por onde começar
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#antes-de-comecar-alguns-conceitos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Antes de começar: alguns conceitos
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#problemas-causados-por-repeticao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problemas causados por repetição
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#veja-a-normalizacao-passo-a-passo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Veja a normalização passo a passo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#primeira-forma-normal-1fn" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Primeira Forma Normal (1FN)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Primeira Forma Normal (1FN)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#exemplo-varios-telefones-em-uma-celula" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exemplo: vários telefones em uma célula
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#segunda-forma-normal-2fn" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Segunda Forma Normal (2FN)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Segunda Forma Normal (2FN)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#exemplo-itens-de-pedido" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exemplo: itens de pedido
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#terceira-forma-normal-3fn" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Terceira Forma Normal (3FN)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Terceira Forma Normal (3FN)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#exemplo-departamento-do-funcionario" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exemplo: departamento do funcionário
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#forma-normal-de-boyce-codd-fnbc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Forma Normal de Boyce-Codd (FNBC)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quarta-forma-normal-4fn" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quarta Forma Normal (4FN)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Quarta Forma Normal (4FN)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#exemplo-habilidades-e-idiomas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exemplo: habilidades e idiomas
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quinta-forma-normal-5fn" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quinta Forma Normal (5FN)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resumo-das-formas-normais" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resumo das formas normais
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quando-desnormalizar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quando desnormalizar?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#por-onde-comecar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Por onde começar
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="guia-de-normalizacao-de-banco-de-dados">Guia de normalização de banco de dados<a class="headerlink" href="#guia-de-normalizacao-de-banco-de-dados" title="Permanent link">&para;</a></h1>
+<p>Normalização é uma maneira de organizar as informações de um banco de dados
+relacional. A ideia é guardar cada fato no lugar apropriado e relacionar as
+tabelas por identificadores, em vez de repetir os mesmos dados em muitos
+lugares.</p>
+<p>Isso ajuda a evitar informações conflitantes e problemas ao incluir, alterar
+ou remover registros. As formas normais são regras que se aplicam uma sobre a
+outra: antes de avaliar uma forma mais avançada, a tabela precisa atender às
+anteriores.</p>
+<blockquote>
+<p><strong>Em termos simples:</strong> se o nome de um departamento está repetido em dezenas
+de registros de funcionários, uma alteração no nome exige atualizar todos
+eles. Guardar o departamento uma vez e relacioná-lo aos funcionários reduz
+esse risco.</p>
+</blockquote>
+<h2 id="antes-de-comecar-alguns-conceitos">Antes de começar: alguns conceitos<a class="headerlink" href="#antes-de-comecar-alguns-conceitos" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Tabela:</strong> conjunto de informações do mesmo tipo, organizado em linhas e
+  colunas. Por exemplo, uma tabela de clientes.</li>
+<li><strong>Linha (registro):</strong> uma ocorrência, como um cliente específico.</li>
+<li><strong>Coluna (atributo):</strong> uma característica registrada, como nome ou e-mail.</li>
+<li><strong>Chave primária (PK):</strong> coluna, ou conjunto de colunas, que identifica cada
+  linha sem repetições. Um <code>id_cliente</code> pode identificar cada cliente.</li>
+<li><strong>Chave composta:</strong> chave formada por mais de uma coluna. Em uma tabela de
+  itens de pedido, a combinação <code>id_pedido</code> + <code>id_produto</code> pode identificar uma
+  linha.</li>
+<li><strong>Chave estrangeira (FK):</strong> coluna que aponta para a chave de outra tabela,
+  criando uma relação entre elas.</li>
+<li><strong>Dependência:</strong> uma informação depende de outra quando conhecê-la determina
+  um único valor. Se cada <code>id_departamento</code> identifica um nome de departamento,
+  então o nome depende do identificador.</li>
+</ul>
+<p>Normalizar não significa eliminar toda repetição. Por exemplo, o identificador
+do departamento pode aparecer em vários funcionários para indicar a qual
+departamento cada um pertence. O objetivo é evitar repetir fatos descritivos
+que podem ser mantidos em um único lugar.</p>
+<h2 id="problemas-causados-por-repeticao">Problemas causados por repetição<a class="headerlink" href="#problemas-causados-por-repeticao" title="Permanent link">&para;</a></h2>
+<p>Uma tabela que mistura fatos diferentes pode levar a três tipos de problema:</p>
+<ul>
+<li><strong>Problema ao incluir:</strong> talvez não seja possível cadastrar um departamento
+  até que exista um funcionário para ele.</li>
+<li><strong>Problema ao alterar:</strong> o nome do mesmo departamento pode precisar ser
+  atualizado em várias linhas; se uma ficar para trás, os dados entram em
+  conflito.</li>
+<li><strong>Problema ao remover:</strong> ao excluir o único funcionário de um departamento,
+  pode-se apagar também a única informação sobre aquele departamento.</li>
+</ul>
+<h2 id="veja-a-normalizacao-passo-a-passo">Veja a normalização passo a passo<a class="headerlink" href="#veja-a-normalizacao-passo-a-passo" title="Permanent link">&para;</a></h2>
+<p>Neste exemplo, acompanhamos os mesmos pedidos enquanto organizamos os dados.
+Avance pelas etapas para ver como a 1FN, a 2FN e a 3FN resolvem problemas
+diferentes — cada passo mantém as informações necessárias e muda onde elas são
+guardadas.</p>
+<section class="normalization-demo" data-normalization-demo aria-labelledby="normalization-demo-title">
+  <h3 id="normalization-demo-title">De uma lista de pedidos a tabelas organizadas</h3>
+  <p class="normalization-demo__status" data-normalization-status aria-live="polite" aria-atomic="true">
+    Começamos com produtos e quantidades agrupados no mesmo campo. Avance para ver como organizar os dados.
+  </p>
+  <section class="normalization-demo__stage" data-normalization-stage="0" aria-labelledby="normalization-stage-0">
+    <h4 id="normalization-stage-0">Dados agrupados</h4>
+    <div class="normalization-demo__table-wrap">
+      <table class="normalization-demo__table">
+        <caption>Um registro por pedido, com vários itens reunidos em uma célula.</caption>
+        <thead>
+          <tr><th scope="col">Pedido</th><th scope="col">Itens e quantidades</th></tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">1001</th><td data-normal-cell="grouped">P1 — Teclado (2); P2 — Mouse (1)</td></tr>
+          <tr><th scope="row">1002</th><td>P1 — Teclado (1)</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Como os itens estão agrupados, fica difícil consultar ou alterar um produto do pedido separadamente.</p>
+  </section>
+  <section class="normalization-demo__stage" data-normalization-stage="1" aria-labelledby="normalization-stage-1" hidden>
+    <h4 id="normalization-stage-1">1FN — um item por linha</h4>
+    <div class="normalization-demo__table-wrap">
+      <table class="normalization-demo__table">
+        <caption>Cada linha representa um produto de um pedido. A chave é a combinação Pedido + Produto.</caption>
+        <thead>
+          <tr>
+            <th scope="col">Pedido (PK)</th><th scope="col">Produto (PK)</th>
+            <th scope="col">Nome do produto</th><th scope="col">Departamento</th>
+            <th scope="col">Nome do departamento</th><th scope="col">Quantidade</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">1001</th><td data-normal-cell="product-key">P1</td>
+            <td data-normal-cell="product-name">Teclado</td><td>D1</td>
+            <td data-normal-cell="department-name">Periféricos</td><td data-normal-cell="quantity">2</td>
+          </tr>
+          <tr>
+            <th scope="row">1001</th><td data-normal-cell="product-key">P2</td>
+            <td data-normal-cell="product-name">Mouse</td><td>D1</td>
+            <td data-normal-cell="department-name">Periféricos</td><td data-normal-cell="quantity">1</td>
+          </tr>
+          <tr>
+            <th scope="row">1002</th><td data-normal-cell="product-key">P1</td>
+            <td data-normal-cell="product-name">Teclado</td><td>D1</td>
+            <td data-normal-cell="department-name">Periféricos</td><td data-normal-cell="quantity">1</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Agora cada célula contém um valor. Porém, nome e departamento do produto se repetem, e a chave do item tem duas partes.</p>
+  </section>
+  <section class="normalization-demo__stage" data-normalization-stage="2" aria-labelledby="normalization-stage-2" hidden>
+    <h4 id="normalization-stage-2">2FN — separar o que depende só do produto</h4>
+    <div class="normalization-demo__table-wrap">
+      <table class="normalization-demo__table">
+        <caption>Itens do pedido: a quantidade depende do pedido e do produto juntos.</caption>
+        <thead>
+          <tr><th scope="col">Pedido (PK)</th><th scope="col">Produto (PK, FK)</th><th scope="col">Quantidade</th></tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">1001</th><td>P1</td><td>2</td></tr>
+          <tr><th scope="row">1001</th><td>P2</td><td>1</td></tr>
+          <tr><th scope="row">1002</th><td>P1</td><td>1</td></tr>
+        </tbody>
+      </table>
+      <table class="normalization-demo__table">
+        <caption>Produtos: o nome e o departamento são informações do produto, não do item do pedido.</caption>
+        <thead>
+          <tr><th scope="col">Produto (PK)</th><th scope="col">Nome do produto</th><th scope="col">Departamento</th><th scope="col">Nome do departamento</th></tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">P1</th><td>Teclado</td><td>D1</td><td data-normal-cell="department-name">Periféricos</td></tr>
+          <tr><th scope="row">P2</th><td>Mouse</td><td>D1</td><td data-normal-cell="department-name">Periféricos</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>A quantidade continua nos itens porque depende de qual produto está em qual pedido. Os dados descritivos do produto ficam juntos em Produtos.</p>
+  </section>
+  <section class="normalization-demo__stage" data-normalization-stage="3" aria-labelledby="normalization-stage-3" hidden>
+    <h4 id="normalization-stage-3">3FN — guardar o departamento uma vez</h4>
+    <div class="normalization-demo__table-wrap">
+      <table class="normalization-demo__table">
+        <caption>Itens do pedido: cada linha associa um pedido a um produto e sua quantidade.</caption>
+        <thead>
+          <tr><th scope="col">Pedido (PK)</th><th scope="col">Produto (PK, FK)</th><th scope="col">Quantidade</th></tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">1001</th><td>P1</td><td>2</td></tr>
+          <tr><th scope="row">1001</th><td>P2</td><td>1</td></tr>
+          <tr><th scope="row">1002</th><td>P1</td><td>1</td></tr>
+        </tbody>
+      </table>
+      <table class="normalization-demo__table">
+        <caption>Produtos: cada produto aponta para o departamento pelo identificador.</caption>
+        <thead>
+          <tr><th scope="col">Produto (PK)</th><th scope="col">Nome do produto</th><th scope="col">Departamento (FK)</th></tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">P1</th><td>Teclado</td><td>D1</td></tr>
+          <tr><th scope="row">P2</th><td>Mouse</td><td>D1</td></tr>
+        </tbody>
+      </table>
+      <table class="normalization-demo__table">
+        <caption>Departamentos: o nome é mantido em um único registro.</caption>
+        <thead>
+          <tr><th scope="col">Departamento (PK)</th><th scope="col">Nome do departamento</th></tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">D1</th><td class="normalization-demo__result">Periféricos</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>O produto guarda o identificador do departamento; o nome depende desse identificador. Se o nome mudar, basta atualizá-lo na tabela Departamentos.</p>
+  </section>
+  <div class="normalization-demo__controls" data-normalization-controls hidden>
+    <button class="md-button" type="button" data-normalization-previous disabled>Voltar</button>
+    <span data-normalization-step aria-live="polite">Pronto para começar</span>
+    <button class="md-button md-button--primary" type="button" data-normalization-next>Começar</button>
+  </div>
+</section>
+
+<p>Ao final, os dados ficam em três tabelas relacionadas: <strong>Itens do pedido</strong>
+(pedido, produto e quantidade), <strong>Produtos</strong> (produto, nome e identificador do
+departamento) e <strong>Departamentos</strong> (identificador e nome). A chave estrangeira
+conecta as tabelas sem precisar repetir todos os dados descritivos.</p>
+<h2 id="primeira-forma-normal-1fn">Primeira Forma Normal (1FN)<a class="headerlink" href="#primeira-forma-normal-1fn" title="Permanent link">&para;</a></h2>
+<p>Uma tabela está na <strong>1FN</strong> quando cada célula contém um único valor e não há
+grupos de informações repetidos em colunas ou listas.</p>
+<h3 id="exemplo-varios-telefones-em-uma-celula">Exemplo: vários telefones em uma célula<a class="headerlink" href="#exemplo-varios-telefones-em-uma-celula" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">id_aluno</th>
+<th>nome</th>
+<th>telefones</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1</td>
+<td>Ana Silva</td>
+<td>(11) 9999-1111, (11) 8888-2222</td>
+</tr>
+<tr>
+<td style="text-align: right;">2</td>
+<td>Carlos Souza</td>
+<td>(21) 7777-3333</td>
+</tr>
+</tbody>
+</table>
+<p>A célula de Ana guarda dois telefones. Isso dificulta localizar, contar ou
+alterar um número individualmente.</p>
+<p>Uma solução é separar os telefones em outra tabela, com uma linha para cada
+número:</p>
+<p><strong>Alunos</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">id_aluno (PK)</th>
+<th>nome</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1</td>
+<td>Ana Silva</td>
+</tr>
+<tr>
+<td style="text-align: right;">2</td>
+<td>Carlos Souza</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Telefones dos alunos</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">id_aluno (FK)</th>
+<th>telefone</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1</td>
+<td>(11) 9999-1111</td>
+</tr>
+<tr>
+<td style="text-align: right;">1</td>
+<td>(11) 8888-2222</td>
+</tr>
+<tr>
+<td style="text-align: right;">2</td>
+<td>(21) 7777-3333</td>
+</tr>
+</tbody>
+</table>
+<p>Neste exemplo, a combinação <code>id_aluno</code> + <code>telefone</code> pode identificar cada
+telefone. O que conta como um valor único depende do uso: um endereço, por
+exemplo, pode ficar em uma coluna se nunca precisar ser consultado ou alterado
+por partes.</p>
+<h2 id="segunda-forma-normal-2fn">Segunda Forma Normal (2FN)<a class="headerlink" href="#segunda-forma-normal-2fn" title="Permanent link">&para;</a></h2>
+<p>Uma tabela está na <strong>2FN</strong> quando já está na 1FN e cada coluna que não faz
+parte de uma chave depende da <strong>chave composta inteira</strong>, não apenas de uma
+parte dela. Essa regra é relevante quando a chave tem mais de uma coluna.</p>
+<h3 id="exemplo-itens-de-pedido">Exemplo: itens de pedido<a class="headerlink" href="#exemplo-itens-de-pedido" title="Permanent link">&para;</a></h3>
+<p>Considere uma tabela em que cada linha representa um produto incluído em um
+pedido. A chave é a combinação <code>id_pedido</code> + <code>id_produto</code>.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">id_pedido (PK)</th>
+<th>id_produto (PK)</th>
+<th style="text-align: right;">quantidade</th>
+<th>nome_produto</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1001</td>
+<td>P1</td>
+<td style="text-align: right;">5</td>
+<td>Teclado</td>
+</tr>
+<tr>
+<td style="text-align: right;">1001</td>
+<td>P2</td>
+<td style="text-align: right;">2</td>
+<td>Mouse</td>
+</tr>
+<tr>
+<td style="text-align: right;">1002</td>
+<td>P1</td>
+<td style="text-align: right;">1</td>
+<td>Teclado</td>
+</tr>
+</tbody>
+</table>
+<p><code>quantidade</code> depende do produto <strong>naquele pedido</strong>, portanto depende das duas
+colunas. Já <code>nome_produto</code> depende apenas de <code>id_produto</code>. Repeti-lo em cada
+pedido cria uma dependência parcial.</p>
+<p>Separe os fatos do pedido dos fatos do produto:</p>
+<p><strong>Itens do pedido</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">id_pedido (PK)</th>
+<th>id_produto (PK, FK)</th>
+<th style="text-align: right;">quantidade</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1001</td>
+<td>P1</td>
+<td style="text-align: right;">5</td>
+</tr>
+<tr>
+<td style="text-align: right;">1001</td>
+<td>P2</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr>
+<td style="text-align: right;">1002</td>
+<td>P1</td>
+<td style="text-align: right;">1</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Produtos</strong></p>
+<table>
+<thead>
+<tr>
+<th>id_produto (PK)</th>
+<th>nome_produto</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>P1</td>
+<td>Teclado</td>
+</tr>
+<tr>
+<td>P2</td>
+<td>Mouse</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Importante:</strong> o preço cobrado em um pedido pode ser diferente do preço
+atual do produto. Se for necessário preservar o histórico da venda, o preço
+praticado pertence ao item do pedido; o preço atual pertence ao cadastro do
+produto. A estrutura deve representar as regras reais do negócio.</p>
+</blockquote>
+<p>Se a tabela tem apenas chaves simples, sem chaves compostas, não há dependência
+parcial desse tipo e a 2FN não exige essa separação.</p>
+<h2 id="terceira-forma-normal-3fn">Terceira Forma Normal (3FN)<a class="headerlink" href="#terceira-forma-normal-3fn" title="Permanent link">&para;</a></h2>
+<p>Uma tabela está na <strong>3FN</strong> quando já está na 2FN e as colunas que não são chave
+descrevem a chave da tabela, e não umas às outras.</p>
+<h3 id="exemplo-departamento-do-funcionario">Exemplo: departamento do funcionário<a class="headerlink" href="#exemplo-departamento-do-funcionario" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">id_funcionario (PK)</th>
+<th>nome_funcionario</th>
+<th>id_departamento</th>
+<th>nome_departamento</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1</td>
+<td>João</td>
+<td>D1</td>
+<td>TI</td>
+</tr>
+<tr>
+<td style="text-align: right;">2</td>
+<td>Maria</td>
+<td>D1</td>
+<td>TI</td>
+</tr>
+<tr>
+<td style="text-align: right;">3</td>
+<td>Pedro</td>
+<td>D2</td>
+<td>Vendas</td>
+</tr>
+</tbody>
+</table>
+<p>Se <code>id_departamento</code> determina <code>nome_departamento</code>, esse nome depende do
+identificador do departamento, não diretamente do funcionário. É uma
+<strong>dependência transitiva</strong>: funcionário → departamento → nome do departamento.</p>
+<p>Separe as informações:</p>
+<p><strong>Funcionários</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">id_funcionario (PK)</th>
+<th>nome_funcionario</th>
+<th>id_departamento (FK)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1</td>
+<td>João</td>
+<td>D1</td>
+</tr>
+<tr>
+<td style="text-align: right;">2</td>
+<td>Maria</td>
+<td>D1</td>
+</tr>
+<tr>
+<td style="text-align: right;">3</td>
+<td>Pedro</td>
+<td>D2</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Departamentos</strong></p>
+<table>
+<thead>
+<tr>
+<th>id_departamento (PK)</th>
+<th>nome_departamento</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>D1</td>
+<td>TI</td>
+</tr>
+<tr>
+<td>D2</td>
+<td>Vendas</td>
+</tr>
+</tbody>
+</table>
+<p>Assim, o nome do departamento é mantido em um só lugar. Se um departamento
+mudar de nome, basta atualizar seu registro.</p>
+<h2 id="forma-normal-de-boyce-codd-fnbc">Forma Normal de Boyce-Codd (FNBC)<a class="headerlink" href="#forma-normal-de-boyce-codd-fnbc" title="Permanent link">&para;</a></h2>
+<p>A <strong>FNBC</strong> é uma versão mais rigorosa da 3FN. Ela exige que toda informação
+determinante de outra informação seja uma chave candidata — isto é, algo capaz
+de identificar uma linha de forma única.</p>
+<p>Na 3FN, há uma exceção para certos casos em que a informação determinada faz
+parte de uma chave candidata. A FNBC não permite essa exceção. Por isso, uma
+tabela pode atender à 3FN e ainda não atender à FNBC. É um caso mais avançado;
+em geral, quem projeta o banco verifica as dependências entre as colunas para
+saber se essa situação existe.</p>
+<h2 id="quarta-forma-normal-4fn">Quarta Forma Normal (4FN)<a class="headerlink" href="#quarta-forma-normal-4fn" title="Permanent link">&para;</a></h2>
+<p>A <strong>4FN</strong> trata de fatos multivalorados que são independentes entre si. Uma
+tabela que combina duas listas independentes pode criar linhas para todas as
+combinações, mesmo que esses pares não tenham significado.</p>
+<h3 id="exemplo-habilidades-e-idiomas">Exemplo: habilidades e idiomas<a class="headerlink" href="#exemplo-habilidades-e-idiomas" title="Permanent link">&para;</a></h3>
+<p>Uma pessoa desenvolvedora pode ter várias habilidades e falar vários idiomas.
+Se uma tabela mistura as duas listas, cada habilidade aparece combinada com
+cada idioma:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">id_pessoa</th>
+<th>habilidade</th>
+<th>idioma</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1</td>
+<td>Python</td>
+<td>Português</td>
+</tr>
+<tr>
+<td style="text-align: right;">1</td>
+<td>Python</td>
+<td>Inglês</td>
+</tr>
+<tr>
+<td style="text-align: right;">1</td>
+<td>SQL</td>
+<td>Português</td>
+</tr>
+<tr>
+<td style="text-align: right;">1</td>
+<td>SQL</td>
+<td>Inglês</td>
+</tr>
+</tbody>
+</table>
+<p>Se os idiomas não estiverem relacionados às habilidades, as quatro linhas
+repetem combinações desnecessárias. Separe os fatos independentes:</p>
+<p><strong>Habilidades</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">id_pessoa (FK)</th>
+<th>habilidade</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1</td>
+<td>Python</td>
+</tr>
+<tr>
+<td style="text-align: right;">1</td>
+<td>SQL</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Idiomas</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">id_pessoa (FK)</th>
+<th>idioma</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">1</td>
+<td>Português</td>
+</tr>
+<tr>
+<td style="text-align: right;">1</td>
+<td>Inglês</td>
+</tr>
+</tbody>
+</table>
+<p>Cada relação pode usar a combinação das duas colunas como chave. Se uma
+habilidade estiver ligada a um idioma específico — por exemplo, nível de
+proficiência por idioma —, essa relação não deve ser separada como se os fatos
+fossem independentes.</p>
+<h2 id="quinta-forma-normal-5fn">Quinta Forma Normal (5FN)<a class="headerlink" href="#quinta-forma-normal-5fn" title="Permanent link">&para;</a></h2>
+<p>A <strong>5FN</strong>, também chamada de <strong>Forma Normal de Junção de Projeção (PJNF)</strong>, trata
+de situações raras em que um fato depende de uma combinação de três ou mais
+relações, e não pode ser representado corretamente apenas pelas dependências
+tratadas nas formas anteriores.</p>
+<p>Uma tabela só pode ser dividida em tabelas menores quando elas permitem
+reconstruir <strong>exatamente</strong> os registros originais. Ao combinar as tabelas
+novamente (operação chamada <em>junção</em> ou <em>join</em>), não podem surgir combinações
+que nunca existiram nem desaparecer combinações válidas. As regras do negócio
+precisam garantir essa propriedade.</p>
+<p>Por isso, não basta separar uma tabela de três colunas em três pares. Sem uma
+regra que torne essa separação segura, a junção pode gerar combinações falsas.
+A 5FN é importante em alguns modelos complexos, mas não costuma ser o primeiro
+problema encontrado em aplicações comuns.</p>
+<h2 id="resumo-das-formas-normais">Resumo das formas normais<a class="headerlink" href="#resumo-das-formas-normais" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Forma normal</th>
+<th>Pergunta prática</th>
+<th>O que busca evitar</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>1FN</strong></td>
+<td>Cada célula guarda um valor por vez?</td>
+<td>Listas ou grupos repetidos dentro de uma célula</td>
+</tr>
+<tr>
+<td><strong>2FN</strong></td>
+<td>Cada informação depende da chave composta inteira?</td>
+<td>Dependência de apenas parte de uma chave composta</td>
+</tr>
+<tr>
+<td><strong>3FN</strong></td>
+<td>Uma coluna que não é chave descreve outra coluna que não é chave?</td>
+<td>Repetição de fatos que dependem de outro atributo</td>
+</tr>
+<tr>
+<td><strong>FNBC</strong></td>
+<td>Todo determinante é uma chave candidata?</td>
+<td>Dependências que ainda podem causar inconsistências</td>
+</tr>
+<tr>
+<td><strong>4FN</strong></td>
+<td>Há listas independentes misturadas na mesma tabela?</td>
+<td>Combinações cruzadas sem significado entre listas</td>
+</tr>
+<tr>
+<td><strong>5FN</strong></td>
+<td>A decomposição em tabelas menores reconstrói exatamente os fatos?</td>
+<td>Redundâncias ligadas a combinações complexas de relações</td>
+</tr>
+</tbody>
+</table>
+<p>As regras são cumulativas: para chegar à 3FN, por exemplo, a tabela também
+precisa atender à 1FN e à 2FN.</p>
+<h2 id="quando-desnormalizar">Quando desnormalizar?<a class="headerlink" href="#quando-desnormalizar" title="Permanent link">&para;</a></h2>
+<p><strong>Desnormalizar</strong> é introduzir alguma repetição de propósito, geralmente para
+atender a uma necessidade comprovada de leitura ou relatório. Pode ser útil em
+um painel de análise, por exemplo, onde consultas frequentes juntariam muitos
+dados.</p>
+<p>Isso traz uma responsabilidade: decidir qual registro é a fonte oficial e como
+manter as cópias sincronizadas. Uma junção entre tabelas não é automaticamente
+lenta; antes de duplicar informações, meça o desempenho e confirme que a
+complexidade adicional realmente resolve o problema.</p>
+<h2 id="por-onde-comecar">Por onde começar<a class="headerlink" href="#por-onde-comecar" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Identifique o que cada linha representa e como ela será identificada.</li>
+<li>Evite guardar listas de valores em uma única célula.</li>
+<li>Observe se alguma informação depende apenas de parte de uma chave composta.</li>
+<li>Mantenha cada fato descritivo no lugar que o identifica.</li>
+<li>Confira as regras do negócio antes de dividir relações mais complexas.</li>
+<li>Considere desnormalizar somente quando houver uma necessidade concreta e
+   um plano para manter os dados consistentes.</li>
+</ol>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Voltar ao topo
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.instant", "navigation.tracking", "navigation.expand", "navigation.sections", "navigation.top", "search.suggest", "search.highlight", "content.code.copy"], "search": "../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado para \u00e1rea de transfer\u00eancia", "clipboard.copy": "Copiar para \u00e1rea de transfer\u00eancia", "search.result.more.one": "Mais 1 nesta p\u00e1gina", "search.result.more.other": "Mais # nesta p\u00e1gina", "search.result.none": "Nenhum resultado encontrado", "search.result.one": "1 resultado encontrado", "search.result.other": "# resultados encontrados", "search.result.placeholder": "Digite para iniciar a busca", "search.result.term.missing": "Ausente", "select.version": "Selecione a vers\u00e3o"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.a5f9d56c.min.js"></script>
+      
+        <script src="https://unpkg.com/mermaid@11.4.1/dist/mermaid.min.js"></script>
+      
+        <script src="../javascripts/mermaid-init.js"></script>
+      
+        <script src="../javascripts/procv-demo.js"></script>
+      
+        <script src="../javascripts/normalization-demo.js"></script>
+      
+    
+  </body>
+</html>
