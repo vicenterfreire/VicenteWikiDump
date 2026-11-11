@@ -26,6 +26,67 @@ Para descobrir o nome do produto com código `102`, use:
 O Excel procura `102` na primeira coluna do intervalo `A2:C4` e retorna o valor
 da **2ª coluna** desse intervalo: `Caneta`.
 
+## Veja o PROCV passo a passo
+
+A demonstração abaixo mostra o que cada parte da fórmula faz. Use os botões para
+avançar ou voltar pelas etapas.
+
+<section class="procv-demo" data-procv-demo aria-labelledby="procv-demo-title">
+  <h3 id="procv-demo-title">Como a busca encontra “Caneta”</h3>
+  <p>Fórmula: <code>=PROCV(102; A2:C4; 2; FALSO)</code></p>
+  <p class="procv-demo__status" data-demo-status aria-live="polite" aria-atomic="true">
+    A tabela está completa. Avance para ver como a fórmula encontra o resultado.
+  </p>
+  <div class="procv-demo__table-wrap">
+    <table class="procv-demo__table">
+      <caption>Lista de produtos. As letras indicam as colunas da planilha e os números, as linhas.</caption>
+      <thead>
+        <tr>
+          <th scope="col">Linha</th>
+          <th scope="col">A (código)</th>
+          <th scope="col">B (produto)</th>
+          <th scope="col">C (preço)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr data-row="2">
+          <th scope="row">2</th>
+          <td data-cell="A2">101</td>
+          <td data-cell="B2">Caderno</td>
+          <td data-cell="C2">R$ 25,00</td>
+        </tr>
+        <tr data-row="3">
+          <th scope="row">3</th>
+          <td data-cell="A3">102</td>
+          <td data-cell="B3">Caneta</td>
+          <td data-cell="C3">R$ 5,00</td>
+        </tr>
+        <tr data-row="4">
+          <th scope="row">4</th>
+          <td data-cell="A4">103</td>
+          <td data-cell="B4">Mochila</td>
+          <td data-cell="C4">R$ 120,00</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="procv-demo__legend" aria-label="Legenda">
+    <span><i class="procv-demo__swatch procv-demo__swatch--matrix" aria-hidden="true"></i>Intervalo selecionado</span>
+    <span><i class="procv-demo__swatch procv-demo__swatch--match" aria-hidden="true"></i>Correspondência encontrada</span>
+    <span><i class="procv-demo__swatch procv-demo__swatch--result" aria-hidden="true"></i>Resultado</span>
+  </div>
+  <div class="procv-demo__controls" data-demo-controls hidden>
+    <button class="md-button" type="button" data-demo-previous disabled>Voltar</button>
+    <span data-demo-step aria-live="polite">Pronto para começar</span>
+    <button class="md-button md-button--primary" type="button" data-demo-next>Começar</button>
+  </div>
+</section>
+
+Sem a animação, o resumo é: o intervalo `A2:C4` define a matriz; o PROCV procura
+`102` na primeira coluna dessa matriz e encontra a linha 3. Depois, conta duas
+colunas a partir do início da matriz e retorna a célula `B3`, cujo valor é
+**Caneta**.
+
 ## Entendendo cada parte
 
 ```excel

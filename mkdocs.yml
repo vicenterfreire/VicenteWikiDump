@@ -62,3 +62,9 @@ markdown_extensions:
 extra_javascript:
   - https://unpkg.com/mermaid@11.4.1/dist/mermaid.min.js
   - javascripts/mermaid-init.js
+  - javascripts/procv-demo.js
+  - javascripts/normalization-demo.js
+
+extra_css:
+  - stylesheets/procv-demo.css
+  - stylesheets/normalization-demo.css

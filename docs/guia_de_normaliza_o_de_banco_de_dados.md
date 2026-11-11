@@ -49,6 +49,142 @@ Uma tabela que mistura fatos diferentes pode levar a três tipos de problema:
 - **Problema ao remover:** ao excluir o único funcionário de um departamento,
   pode-se apagar também a única informação sobre aquele departamento.
 
+## Veja a normalização passo a passo
+
+Neste exemplo, acompanhamos os mesmos pedidos enquanto organizamos os dados.
+Avance pelas etapas para ver como a 1FN, a 2FN e a 3FN resolvem problemas
+diferentes — cada passo mantém as informações necessárias e muda onde elas são
+guardadas.
+
+<section class="normalization-demo" data-normalization-demo aria-labelledby="normalization-demo-title">
+  <h3 id="normalization-demo-title">De uma lista de pedidos a tabelas organizadas</h3>
+  <p class="normalization-demo__status" data-normalization-status aria-live="polite" aria-atomic="true">
+    Começamos com produtos e quantidades agrupados no mesmo campo. Avance para ver como organizar os dados.
+  </p>
+  <section class="normalization-demo__stage" data-normalization-stage="0" aria-labelledby="normalization-stage-0">
+    <h4 id="normalization-stage-0">Dados agrupados</h4>
+    <div class="normalization-demo__table-wrap">
+      <table class="normalization-demo__table">
+        <caption>Um registro por pedido, com vários itens reunidos em uma célula.</caption>
+        <thead>
+          <tr><th scope="col">Pedido</th><th scope="col">Itens e quantidades</th></tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">1001</th><td data-normal-cell="grouped">P1 — Teclado (2); P2 — Mouse (1)</td></tr>
+          <tr><th scope="row">1002</th><td>P1 — Teclado (1)</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Como os itens estão agrupados, fica difícil consultar ou alterar um produto do pedido separadamente.</p>
+  </section>
+  <section class="normalization-demo__stage" data-normalization-stage="1" aria-labelledby="normalization-stage-1" hidden>
+    <h4 id="normalization-stage-1">1FN — um item por linha</h4>
+    <div class="normalization-demo__table-wrap">
+      <table class="normalization-demo__table">
+        <caption>Cada linha representa um produto de um pedido. A chave é a combinação Pedido + Produto.</caption>
+        <thead>
+          <tr>
+            <th scope="col">Pedido (PK)</th><th scope="col">Produto (PK)</th>
+            <th scope="col">Nome do produto</th><th scope="col">Departamento</th>
+            <th scope="col">Nome do departamento</th><th scope="col">Quantidade</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">1001</th><td data-normal-cell="product-key">P1</td>
+            <td data-normal-cell="product-name">Teclado</td><td>D1</td>
+            <td data-normal-cell="department-name">Periféricos</td><td data-normal-cell="quantity">2</td>
+          </tr>
+          <tr>
+            <th scope="row">1001</th><td data-normal-cell="product-key">P2</td>
+            <td data-normal-cell="product-name">Mouse</td><td>D1</td>
+            <td data-normal-cell="department-name">Periféricos</td><td data-normal-cell="quantity">1</td>
+          </tr>
+          <tr>
+            <th scope="row">1002</th><td data-normal-cell="product-key">P1</td>
+            <td data-normal-cell="product-name">Teclado</td><td>D1</td>
+            <td data-normal-cell="department-name">Periféricos</td><td data-normal-cell="quantity">1</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Agora cada célula contém um valor. Porém, nome e departamento do produto se repetem, e a chave do item tem duas partes.</p>
+  </section>
+  <section class="normalization-demo__stage" data-normalization-stage="2" aria-labelledby="normalization-stage-2" hidden>
+    <h4 id="normalization-stage-2">2FN — separar o que depende só do produto</h4>
+    <div class="normalization-demo__table-wrap">
+      <table class="normalization-demo__table">
+        <caption>Itens do pedido: a quantidade depende do pedido e do produto juntos.</caption>
+        <thead>
+          <tr><th scope="col">Pedido (PK)</th><th scope="col">Produto (PK, FK)</th><th scope="col">Quantidade</th></tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">1001</th><td>P1</td><td>2</td></tr>
+          <tr><th scope="row">1001</th><td>P2</td><td>1</td></tr>
+          <tr><th scope="row">1002</th><td>P1</td><td>1</td></tr>
+        </tbody>
+      </table>
+      <table class="normalization-demo__table">
+        <caption>Produtos: o nome e o departamento são informações do produto, não do item do pedido.</caption>
+        <thead>
+          <tr><th scope="col">Produto (PK)</th><th scope="col">Nome do produto</th><th scope="col">Departamento</th><th scope="col">Nome do departamento</th></tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">P1</th><td>Teclado</td><td>D1</td><td data-normal-cell="department-name">Periféricos</td></tr>
+          <tr><th scope="row">P2</th><td>Mouse</td><td>D1</td><td data-normal-cell="department-name">Periféricos</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>A quantidade continua nos itens porque depende de qual produto está em qual pedido. Os dados descritivos do produto ficam juntos em Produtos.</p>
+  </section>
+  <section class="normalization-demo__stage" data-normalization-stage="3" aria-labelledby="normalization-stage-3" hidden>
+    <h4 id="normalization-stage-3">3FN — guardar o departamento uma vez</h4>
+    <div class="normalization-demo__table-wrap">
+      <table class="normalization-demo__table">
+        <caption>Itens do pedido: cada linha associa um pedido a um produto e sua quantidade.</caption>
+        <thead>
+          <tr><th scope="col">Pedido (PK)</th><th scope="col">Produto (PK, FK)</th><th scope="col">Quantidade</th></tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">1001</th><td>P1</td><td>2</td></tr>
+          <tr><th scope="row">1001</th><td>P2</td><td>1</td></tr>
+          <tr><th scope="row">1002</th><td>P1</td><td>1</td></tr>
+        </tbody>
+      </table>
+      <table class="normalization-demo__table">
+        <caption>Produtos: cada produto aponta para o departamento pelo identificador.</caption>
+        <thead>
+          <tr><th scope="col">Produto (PK)</th><th scope="col">Nome do produto</th><th scope="col">Departamento (FK)</th></tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">P1</th><td>Teclado</td><td>D1</td></tr>
+          <tr><th scope="row">P2</th><td>Mouse</td><td>D1</td></tr>
+        </tbody>
+      </table>
+      <table class="normalization-demo__table">
+        <caption>Departamentos: o nome é mantido em um único registro.</caption>
+        <thead>
+          <tr><th scope="col">Departamento (PK)</th><th scope="col">Nome do departamento</th></tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">D1</th><td class="normalization-demo__result">Periféricos</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>O produto guarda o identificador do departamento; o nome depende desse identificador. Se o nome mudar, basta atualizá-lo na tabela Departamentos.</p>
+  </section>
+  <div class="normalization-demo__controls" data-normalization-controls hidden>
+    <button class="md-button" type="button" data-normalization-previous disabled>Voltar</button>
+    <span data-normalization-step aria-live="polite">Pronto para começar</span>
+    <button class="md-button md-button--primary" type="button" data-normalization-next>Começar</button>
+  </div>
+</section>
+
+Ao final, os dados ficam em três tabelas relacionadas: **Itens do pedido**
+(pedido, produto e quantidade), **Produtos** (produto, nome e identificador do
+departamento) e **Departamentos** (identificador e nome). A chave estrangeira
+conecta as tabelas sem precisar repetir todos os dados descritivos.
+
 ## Primeira Forma Normal (1FN)
 
 Uma tabela está na **1FN** quando cada célula contém um único valor e não há
