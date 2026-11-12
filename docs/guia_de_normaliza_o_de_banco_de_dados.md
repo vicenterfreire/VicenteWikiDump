@@ -58,7 +58,7 @@ guardadas.
 
 <section class="normalization-demo" data-normalization-demo aria-labelledby="normalization-demo-title">
   <h3 id="normalization-demo-title">De uma lista de pedidos a tabelas organizadas</h3>
-  <p class="normalization-demo__status" data-normalization-status aria-live="polite" aria-atomic="true">
+  <p class="normalization-demo__status" data-normalization-status data-normalization-origin aria-live="polite" aria-atomic="true">
     Começamos com produtos e quantidades agrupados no mesmo campo. Avance para ver como organizar os dados.
   </p>
   <section class="normalization-demo__stage" data-normalization-stage="0" aria-labelledby="normalization-stage-0">
@@ -70,7 +70,7 @@ guardadas.
           <tr><th scope="col">Pedido</th><th scope="col">Itens e quantidades</th></tr>
         </thead>
         <tbody>
-          <tr><th scope="row">1001</th><td data-normal-cell="grouped">P1 — Teclado (2); P2 — Mouse (1)</td></tr>
+          <tr><th scope="row">1001</th><td data-normal-cell="grouped" data-normal-focus="grouped">P1 — Teclado (2); P2 — Mouse (1)</td></tr>
           <tr><th scope="row">1002</th><td>P1 — Teclado (1)</td></tr>
         </tbody>
       </table>
@@ -91,9 +91,9 @@ guardadas.
         </thead>
         <tbody>
           <tr>
-            <th scope="row">1001</th><td data-normal-cell="product-key">P1</td>
-            <td data-normal-cell="product-name">Teclado</td><td>D1</td>
-            <td data-normal-cell="department-name">Periféricos</td><td data-normal-cell="quantity">2</td>
+            <th scope="row" data-normal-focus="atomic-row">1001</th><td data-normal-cell="product-key" data-normal-focus="atomic-row">P1</td>
+            <td data-normal-cell="product-name" data-normal-focus="atomic-row">Teclado</td><td data-normal-focus="atomic-row">D1</td>
+            <td data-normal-cell="department-name" data-normal-focus="atomic-row">Periféricos</td><td data-normal-cell="quantity" data-normal-focus="atomic-row">2</td>
           </tr>
           <tr>
             <th scope="row">1001</th><td data-normal-cell="product-key">P2</td>
@@ -130,7 +130,7 @@ guardadas.
           <tr><th scope="col">Produto (PK)</th><th scope="col">Nome do produto</th><th scope="col">Departamento</th><th scope="col">Nome do departamento</th></tr>
         </thead>
         <tbody>
-          <tr><th scope="row">P1</th><td>Teclado</td><td>D1</td><td data-normal-cell="department-name">Periféricos</td></tr>
+          <tr><th scope="row">P1</th><td data-normal-focus="product-description">Teclado</td><td>D1</td><td data-normal-cell="department-name">Periféricos</td></tr>
           <tr><th scope="row">P2</th><td>Mouse</td><td>D1</td><td data-normal-cell="department-name">Periféricos</td></tr>
         </tbody>
       </table>
@@ -167,12 +167,13 @@ guardadas.
           <tr><th scope="col">Departamento (PK)</th><th scope="col">Nome do departamento</th></tr>
         </thead>
         <tbody>
-          <tr><th scope="row">D1</th><td class="normalization-demo__result">Periféricos</td></tr>
+          <tr><th scope="row">D1</th><td class="normalization-demo__result" data-normal-focus="department-name">Periféricos</td></tr>
         </tbody>
       </table>
     </div>
     <p>O produto guarda o identificador do departamento; o nome depende desse identificador. Se o nome mudar, basta atualizá-lo na tabela Departamentos.</p>
   </section>
+  <span class="normalization-demo__spotlight" data-normalization-spotlight aria-hidden="true"></span>
   <div class="normalization-demo__controls" data-normalization-controls hidden>
     <button class="md-button" type="button" data-normalization-previous disabled>Voltar</button>
     <span data-normalization-step aria-live="polite">Pronto para começar</span>

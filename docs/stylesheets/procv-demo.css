@@ -1,4 +1,5 @@
 .procv-demo {
+  position: relative;
   margin: 1.5rem 0;
   padding: 1rem;
   border: 1px solid var(--md-default-fg-color--lightest);
@@ -18,7 +19,40 @@
 }
 
 .procv-demo__table-wrap {
+  position: relative;
   overflow-x: auto;
+}
+
+.procv-demo__spotlight {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  width: var(--spotlight-width);
+  height: var(--spotlight-height);
+  box-sizing: border-box;
+  border: 2px solid var(--md-accent-fg-color);
+  border-radius: 0.4rem;
+  background: color-mix(in srgb, var(--md-accent-fg-color) 7%, transparent);
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--md-accent-fg-color) 35%, transparent);
+  opacity: 0;
+  pointer-events: none;
+  transform: translate3d(var(--spotlight-x), var(--spotlight-y), 0);
+  transition:
+    transform 620ms cubic-bezier(0.2, 0.75, 0.25, 1),
+    width 620ms cubic-bezier(0.2, 0.75, 0.25, 1),
+    height 620ms cubic-bezier(0.2, 0.75, 0.25, 1),
+    opacity 180ms ease,
+    border-radius 220ms ease;
+  will-change: transform, width, height;
+}
+
+.procv-demo__spotlight.is-visible {
+  opacity: 1;
+}
+
+.procv-demo__spotlight.is-origin {
+  border-radius: 50%;
 }
 
 .procv-demo__table {
@@ -122,8 +156,10 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .procv-demo__spotlight,
   .procv-demo__table th,
   .procv-demo__table td {
     transition: none;
+    will-change: auto;
   }
 }

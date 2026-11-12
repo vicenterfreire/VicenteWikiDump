@@ -33,7 +33,7 @@ avançar ou voltar pelas etapas.
 
 <section class="procv-demo" data-procv-demo aria-labelledby="procv-demo-title">
   <h3 id="procv-demo-title">Como a busca encontra “Caneta”</h3>
-  <p>Fórmula: <code>=PROCV(102; A2:C4; 2; FALSO)</code></p>
+  <p data-demo-origin>Fórmula: <code>=PROCV(102; A2:C4; 2; FALSO)</code></p>
   <p class="procv-demo__status" data-demo-status aria-live="polite" aria-atomic="true">
     A tabela está completa. Avance para ver como a fórmula encontra o resultado.
   </p>
@@ -69,6 +69,7 @@ avançar ou voltar pelas etapas.
         </tr>
       </tbody>
     </table>
+    <span class="procv-demo__spotlight" data-demo-spotlight aria-hidden="true"></span>
   </div>
   <div class="procv-demo__legend" aria-label="Legenda">
     <span><i class="procv-demo__swatch procv-demo__swatch--matrix" aria-hidden="true"></i>Intervalo selecionado</span>
